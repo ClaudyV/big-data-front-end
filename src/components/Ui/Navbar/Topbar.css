@@ -1,0 +1,23 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.625em 1em;
+  gap: 0.625em;
+  background: #651fff;
+  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2);
+}
+
+.topbar .logo {
+  font-family: "Ubuntu";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.125rem;
+  color: #ffffff;
+}
+
+.topbar .settings {
+  display: flex;
+  align-items: center;
+}
