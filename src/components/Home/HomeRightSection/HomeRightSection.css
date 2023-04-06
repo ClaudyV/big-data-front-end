@@ -1,0 +1,60 @@
+.right-section-wrapper {
+  padding: 1em 8.969em;
+  display: flex;
+  flex-direction: column;
+  gap: 2.625em;
+  width: 100%;
+  align-items: center;
+}
+
+.right-section-wrapper .top-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3.5em;
+  width: 100%;
+  align-items: center;
+}
+
+.right-section-wrapper .top-section .title {
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 2.875rem;
+  color: #000000;
+}
+
+.right-section-wrapper .top-section .top-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.625em;
+  width: 100%;
+  align-items: center;
+}
+
+.right-section-wrapper .top-section .top-content .input-group {
+  display: flex;
+  gap: 0.75em;
+}
+
+.right-section-wrapper .top-section .top-content .search-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.right-section-wrapper .top-section .top-content .search-section .line {
+  flex-grow: 1;
+  height: 1px;
+  border: none;
+  background-color: #c29fff;
+}
+
+.right-section-wrapper .top-section .top-content .search-section .search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+}
