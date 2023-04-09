@@ -2,7 +2,6 @@
   padding: 1em 8.969em;
   display: flex;
   flex-direction: column;
-  gap: 2.625em;
   width: 100%;
   align-items: center;
 }
@@ -66,4 +65,8 @@
   line-height: 1rem;
   color: #b388ff;
   margin: 0 10px;
+}
+
+.bottom-section {
+  width: 100%;
 }
