@@ -1,6 +1,7 @@
 import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import LineChart from "../components/Ui/Charts/BarChart";
+import PieChart from "../components/Ui/Charts/PieChart";
 import { apiStatistics } from "../services/statistics";
 import "./../styles/Results.css";
 
@@ -57,6 +58,9 @@ const Results: React.FC<StatProps> = ({ stats }) => {
             <div className="result-chart">
               <LineChart data={chartResult} />
             </div>
+            <div className="result-chart">
+              <PieChart data={chartResult} />
+            </div>
           </div>
         ) : (
           <div className="result-chart error-message">{errorMessage}</div>
@@ -65,6 +69,9 @@ const Results: React.FC<StatProps> = ({ stats }) => {
         <div className="result-wrapper">
           <div className="result-title">
             <Skeleton variant="rectangular" />
+          </div>
+          <div className="result-chart chart-loading">
+            <Skeleton variant="rectangular" height={'100%'}/>
           </div>
           <div className="result-chart chart-loading">
             <Skeleton variant="rectangular" height={'100%'}/>

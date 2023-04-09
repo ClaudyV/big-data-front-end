@@ -1,14 +1,14 @@
 import React from "react";
-import Highcharts from "highcharts";
+import Highcharts, { Options } from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-interface BarChartProps {
+interface PieChartProps {
   data: any;
 }
 
-const BarChart: React.FC<BarChartProps> = ({ data }) => {
+const PieChart: React.FC<PieChartProps> = ({ data }) => {
   // Organize married men, single men, married women and single women
-  const getChartData = () => {
+  const getChartData: any = () => {
     const marriedMen = data.reduce(
       (acc: any, item: any) => acc + Number(item.household_ordinary_m),
       0
@@ -27,52 +27,42 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
     );
     return [
       {
-        name: "男性",
-        data: [marriedMen, singleMen],
-        color: "#7D5FB2",
-      },
-      {
-        name: "女性",
-        data: [marriedWomen, singleWomen],
-        color: "#B388FF",
+        colorByPoint: true,
+        data: [
+          {
+            name: "共同生活",
+            y: marriedMen + marriedWomen,
+          },
+          {
+            name: "獨立生活",
+            y: singleMen + singleWomen,
+          },
+        ],
       },
     ];
   };
 
-  const options = {
+  const options: Options = {
     chart: {
-      type: "column",
-      height: '47%'
+      type: "pie",
+      height: "47%",
     },
     title: {
-      text: "人口數總計",
-    },
-    xAxis: {
-      title: {
-        text: "型態",
-        style: {
-          fontWeight: "bold",
-        },
-      },
-      categories: ["共同生活", "獨立生活"],
-    },
-    yAxis: {
-      title: {
-        text: "數量",
-        align: "high",
-        offset: 15,
-        rotation: 0,
-        y: -10,
-        style: {
-          fontWeight: "bold",
-        },
-      },
+      text: "戶數統計",
     },
     plotOptions: {
-      column: {
+      pie: {
+        size: "100%",
+        allowPointSelect: true,
+        cursor: "pointer",
         dataLabels: {
           enabled: true,
+          formatter: function () {
+            return `${Math.round(this.percentage * 100) / 100}%`;
+          },
         },
+        showInLegend: true,
+        colors: ["#626EB2", "#8C9EFF"],
       },
     },
     series: getChartData(),
@@ -87,7 +77,7 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
           },
           chartOptions: {
             chart: {
-              type: "column",
+              type: "pie",
               height: "70%",
             },
           },
@@ -98,11 +88,11 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
           },
           chartOptions: {
             chart: {
-              type: "column",
+              type: "pie",
               height: "100%",
             },
           },
-        }
+        },
       ],
     },
   };
@@ -110,4 +100,4 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
   return <HighchartsReact highcharts={Highcharts} options={options} />;
 };
 
-export default BarChart;
+export default PieChart;

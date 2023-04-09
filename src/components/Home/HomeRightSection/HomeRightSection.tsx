@@ -114,92 +114,119 @@ const HomeRightSection = () => {
   }, [year, county, district]);
 
   return (
-    <div className="right-section-wrapper">
-      <div className="top-section">
-        <div className="title">
-          <span>人口數、戶數按戶別及性別統計</span>
-        </div>
-        <div className="top-content">
-          <div className="input-group">
-            <div>
-              <Autocomplete
-                value={yearValue}
-                options={allYears}
-                onChange={handleYearChange}
-                loading={loading}
-                size="small"
-                id="combo-box-demo"
-                sx={{
-                  width: 93,
-                }}
-                renderInput={(params) => <TextField {...params} label="年份" />}
-              />
-            </div>
-            <div>
-              <Autocomplete
-                value={countyValue}
-                options={countyOptions}
-                onChange={handleCountyChange}
-                size="small"
-                id="combo-box-demo"
-                sx={{
-                  width: 165,
-                }}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="縣/市"
-                    placeholder="請選擇縣/市"
-                  />
-                )}
-              />
-            </div>
-            <div>
-              <Autocomplete
-                options={districtList.map((option: any) => option.name)}
-                value={districValue}
-                onChange={(event: any, newValue: string | null) => {
-                  setDistrictValue(newValue);
-                }}
-                size="small"
-                id="combo-box-demo"
-                sx={{
-                  width: 165,
-                }}
-                renderInput={(params) => (
-                  <TextField {...params} label={"區"} placeholder="請選擇區" />
-                )}
-                disabled={isdistrictDisabled}
-              />
-            </div>
-            <div>
-              <Button
-                disabled={
-                  yearValue === null ||
-                  countyValue === null ||
-                  districValue === null
-                }
-                color="primary"
-                variant="contained"
-                onClick={handleSubmit}
-              >
-                Submit
-              </Button>
-            </div>
-          </div>
-          <div className="search-section">
-            <hr className="line" />
-            <div className="search">
-              <span>搜尋結果</span>
-            </div>
-            <hr className="line" />
+    <>
+      <div className="right-section-wrapper">
+        <div className="taiwan-wrapper-right">
+          <div className="taiwan-right">
+            <span>TAIWAN</span>
           </div>
         </div>
+        <div className="top-section">
+          <div className="title">
+            <span>人口數、戶數按戶別及性別統計</span>
+          </div>
+          <div className="top-content">
+            <div className="input-group">
+              <div>
+                <Autocomplete
+                  value={yearValue}
+                  options={allYears}
+                  onChange={handleYearChange}
+                  loading={loading}
+                  size="small"
+                  id="combo-box-demo"
+                  sx={{
+                    width: 93,
+                    backgroundColor: '#ffffff'
+                  }}
+                  renderInput={(params) => (
+                    <TextField {...params} label="年份" />
+                  )}
+                />
+              </div>
+              <div>
+                <Autocomplete
+                  value={countyValue}
+                  options={countyOptions}
+                  onChange={handleCountyChange}
+                  size="small"
+                  id="combo-box-demo"
+                  sx={{
+                    width: 165,
+                    backgroundColor: '#ffffff',
+                    [`@media (max-width: 980px)`]: {
+                      width: "100%",
+                    },
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="縣/市"
+                      placeholder="請選擇縣/市"
+                    />
+                  )}
+                />
+              </div>
+              <div>
+                <Autocomplete
+                  options={districtList.map((option: any) => option.name)}
+                  value={districValue}
+                  onChange={(event: any, newValue: string | null) => {
+                    setDistrictValue(newValue);
+                  }}
+                  size="small"
+                  id="combo-box-demo"
+                  sx={{
+                    width: 165,
+                    backgroundColor: '#ffffff',
+                    [`@media (max-width: 980px)`]: {
+                      width: "100%",
+                    },
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label={"區"}
+                      placeholder="請選擇區"
+                    />
+                  )}
+                  disabled={isdistrictDisabled}
+                />
+              </div>
+              <div>
+                <Button
+                  disabled={
+                    yearValue === null ||
+                    countyValue === null ||
+                    districValue === null
+                  }
+                  color="primary"
+                  variant="contained"
+                  onClick={handleSubmit}
+                  sx={{
+                    [`@media (max-width: 980px)`]: {
+                      width: "100%",
+                    },
+                  }}
+                >
+                  Submit
+                </Button>
+              </div>
+            </div>
+            <div className="search-section">
+              <hr className="line" />
+              <div className="search">
+                <span>搜尋結果</span>
+              </div>
+              <hr className="line" />
+            </div>
+          </div>
+        </div>
+        <div className="bottom-section">
+          {submitted && <Results stats={submitResult} />}
+        </div>
       </div>
-      <div className="bottom-section">
-        {submitted && <Results stats={submitResult} />}
-      </div>
-    </div>
+    </>
   );
 };
 

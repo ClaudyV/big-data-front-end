@@ -17,6 +17,7 @@
 
 .result-chart {
   width: 100%;
+  min-height: 30em;
 }
 
 .error-message {
@@ -25,5 +26,11 @@
 }
 
 .chart-loading {
-    height: 25em;
+  height: 25em;
+}
+
+@media screen and (max-width: 1200px) {
+  .result-chart {
+    min-height: auto;
+  }
 }
