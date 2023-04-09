@@ -1,4 +1,3 @@
-import "./HomeRightSection.css";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
@@ -6,14 +5,30 @@ import Results from "../../../pages/Results";
 import AREA_DATA, { District } from "../../../constants/countyAndDistrict";
 import { useEffect, useState } from "react";
 import { apiStatistics } from "../../../services/statistics";
+import "./HomeRightSection.css";
+import { useNavigate, useParams } from "react-router-dom";
+
+interface Statistics {
+  year: string | null;
+  county: string | null;
+  district: string | null;
+}
 
 const HomeRightSection = () => {
+  const { year, county, district } = useParams();
+  const navigate = useNavigate();
   const [yearValue, setYearValue] = useState<string | null>(null);
   const [allYears, setAllYears] = useState([]);
-  const [countyValue, setCountyValue] = useState<string | null>(null);
-  const [districValue, setDistrictValue] = useState<string | null>(null);
+  const [countyValue, setCountyValue]: any = useState<string | null>(null);
+  const [districValue, setDistrictValue]: any = useState<string | null>(null);
   const [districtList, setDistrictList] = useState<District[]>([]);
   const [isdistrictDisabled, setIsDistrictDisabled] = useState<boolean>(true);
+  const [submitResult, setSubmitResult]: any = useState<Statistics>({
+    year: null,
+    county: null,
+    district: null,
+  });
+  const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   // County List options
@@ -49,6 +64,22 @@ const HomeRightSection = () => {
     }
   };
 
+  // Display Results upon submit
+  const handleSubmit = (event: React.ChangeEvent<{}>) => {
+    event.preventDefault();
+    setSubmitResult({
+      year: yearValue,
+      county: countyValue,
+      district: districValue,
+    });
+    setSubmitted(true);
+    navigate(
+      `/${yearValue}/${encodeURIComponent(countyValue)}/${encodeURIComponent(
+        districValue
+      )}`
+    );
+  };
+
   // Get all Years
   const getAllYears = async () => {
     setAllYears([]);
@@ -70,6 +101,17 @@ const HomeRightSection = () => {
   useEffect(() => {
     getAllYears();
   }, []);
+
+  useEffect(() => {
+    if (year !== undefined || county !== undefined || district !== undefined) {
+      setSubmitResult({
+        year,
+        county,
+        district,
+      });
+      setSubmitted(true);
+    }
+  }, [year, county, district]);
 
   return (
     <div className="right-section-wrapper">
@@ -139,6 +181,7 @@ const HomeRightSection = () => {
                 }
                 color="primary"
                 variant="contained"
+                onClick={handleSubmit}
               >
                 Submit
               </Button>
@@ -154,7 +197,7 @@ const HomeRightSection = () => {
         </div>
       </div>
       <div className="bottom-section">
-        <Results />
+        {submitted && <Results stats={submitResult} />}
       </div>
     </div>
   );
