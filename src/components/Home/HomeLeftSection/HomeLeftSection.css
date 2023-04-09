@@ -25,3 +25,9 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+@media screen and (max-width: 980px) {
+  .taiwan-wrapper {
+    display: none;
+  }
+}
