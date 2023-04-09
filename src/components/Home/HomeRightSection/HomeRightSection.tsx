@@ -15,7 +15,6 @@ const HomeRightSection = () => {
   const [districtList, setDistrictList] = useState<District[]>([]);
   const [isdistrictDisabled, setIsDistrictDisabled] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null | unknown>(null);
 
   // County List options
   const countyOptions = AREA_DATA.map((option) => option.name);
@@ -60,12 +59,9 @@ const HomeRightSection = () => {
         const yearsToNumbers =
           response.paths["/ODRP019/{yyy}"].get.parameters[0].enum;
         setAllYears(yearsToNumbers.map((num: string) => num.toString()));
-      } else {
-        setError(response);
       }
     } catch (error) {
       console.error(error);
-      setError(error);
     } finally {
       setLoading(false);
     }
