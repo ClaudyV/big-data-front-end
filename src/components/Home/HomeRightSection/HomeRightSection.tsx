@@ -1,12 +1,15 @@
-import TextField from "@mui/material/TextField";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
 import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
-import Results from "../../../pages/Results";
+import TextField from "@mui/material/TextField";
+
 import AREA_DATA, { District } from "../../../constants/countyAndDistrict";
-import { useEffect, useState } from "react";
+import Results from "../../../pages/Results";
 import { apiStatistics } from "../../../services/statistics";
+
 import "./HomeRightSection.css";
-import { useNavigate, useParams } from "react-router-dom";
 
 interface Statistics {
   year: string | null;
@@ -137,7 +140,7 @@ const HomeRightSection = () => {
                   id="combo-box-demo"
                   sx={{
                     width: 93,
-                    backgroundColor: '#ffffff'
+                    backgroundColor: "#ffffff",
                   }}
                   renderInput={(params) => (
                     <TextField {...params} label="年份" />
@@ -153,7 +156,7 @@ const HomeRightSection = () => {
                   id="combo-box-demo"
                   sx={{
                     width: 165,
-                    backgroundColor: '#ffffff',
+                    backgroundColor: "#ffffff",
                     [`@media (max-width: 980px)`]: {
                       width: "100%",
                     },
@@ -178,7 +181,7 @@ const HomeRightSection = () => {
                   id="combo-box-demo"
                   sx={{
                     width: 165,
-                    backgroundColor: '#ffffff',
+                    backgroundColor: "#ffffff",
                     [`@media (max-width: 980px)`]: {
                       width: "100%",
                     },

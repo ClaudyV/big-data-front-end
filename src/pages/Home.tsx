@@ -1,6 +1,6 @@
+import "./../styles/Home.css";
 import HomeLeftSection from "../components/Home/HomeLeftSection/HomeLeftSection";
 import HomeRightSection from "../components/Home/HomeRightSection/HomeRightSection";
-import "./../styles/Home.css";
 
 const Home = () => {
   return (
