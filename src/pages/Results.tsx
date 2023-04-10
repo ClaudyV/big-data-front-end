@@ -1,8 +1,10 @@
-import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
+
+import { Skeleton } from "@mui/material";
 import LineChart from "../components/Ui/Charts/BarChart";
 import PieChart from "../components/Ui/Charts/PieChart";
 import { apiStatistics } from "../services/statistics";
+
 import "./../styles/Results.css";
 
 interface Statistics {
@@ -53,7 +55,9 @@ const Results: React.FC<StatProps> = ({ stats }) => {
         chartResult.length ? (
           <div className="result-wrapper">
             <div className="result-title">
-              <span>{stats?.year}年 新北市 萬里區</span>
+              <span>
+                {stats?.year}年 {stats?.county} {stats?.district}
+              </span>
             </div>
             <div className="result-chart">
               <LineChart data={chartResult} />
@@ -71,10 +75,10 @@ const Results: React.FC<StatProps> = ({ stats }) => {
             <Skeleton variant="rectangular" />
           </div>
           <div className="result-chart chart-loading">
-            <Skeleton variant="rectangular" height={'100%'}/>
+            <Skeleton variant="rectangular" height={"100%"} />
           </div>
           <div className="result-chart chart-loading">
-            <Skeleton variant="rectangular" height={'100%'}/>
+            <Skeleton variant="rectangular" height={"100%"} />
           </div>
         </div>
       )}
